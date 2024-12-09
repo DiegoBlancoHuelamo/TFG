@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/actividadesMadridEstilos/tablasActividades.css">
+    <title>Actividades en Eventos</title>
+</head>
+<body>
+    <h1>Actividades en Eventos</h1>
+    
+    <!-- Botón para ver el mapa, alineado a la derecha -->
+    <div style="text-align: right; margin-bottom: 10px;">
+        <a href="{{ url_for('actividades.mapa_eventos') }}" class="btn">Ver mapa</a>
+    </div>
+
+    <!-- Tabla de actividades -->
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Fecha de inicio</th>
+                <th>Público</th>
+                <th>Descripción</th>
+                <th>Ubicación</th>
+                <th>Enlace</th>
+                <th>Dirección</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actividad in actividades %}
+                <tr>
+                    <td>{{ actividad.title }}</td>
+                    <td>{{ actividad.dtstart }}</td>
+                    <td>{{ actividad.audience }}</td>
+                    <td>{{ actividad.description }}</td>
+                    <td>{{ actividad.event_location }}</td>
+                    <td><a href="{{ actividad.link }}" target="_blank">Ver más</a></td>
+                    <td>{{ actividad.street_address }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        {% if page > 1 %}
+            <a class="btn" href="{{ url_for('actividades.actividades_eventos', page=page - 1) }}">Anterior</a>
+        {% endif %}
+        
+        <span> Página {{ page }} de {{ (total_actividades // per_page) + (1 if total_actividades % per_page > 0 else 0) }} </span>
+        
+        {% if actividades|length == 15 %}
+            <a class="btn" href="{{ url_for('actividades.actividades_eventos', page=page + 1) }}">Siguiente</a>
+        {% endif %}
+    </div>
+</body>
+</html>
