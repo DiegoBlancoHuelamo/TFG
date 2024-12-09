@@ -1,0 +1,122 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #eef9ff;
+    color: #333;
+    text-align: center;
+}
+
+/* Títulos */
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #3498db;
+    color: white;
+}
+
+thead th {
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #eaf6ff;
+}
+
+tbody td {
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #d6ebff;
+}
+
+/* Fila resaltada */
+tbody tr.inactiva {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Enlaces */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination .btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination .btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.pagination span {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Estilo del botón de "Ver mapa" */
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
