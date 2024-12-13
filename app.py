@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from subaplicaciones.actividadesMadrid import actividades_bp
 from subaplicaciones.culturaEducacion import cultura_bp
