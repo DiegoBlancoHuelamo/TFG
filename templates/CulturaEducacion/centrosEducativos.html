@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/cultura_educacionMadridEstilos/tablasCulturaEducacion.css">
+    <title>Centros Educativos de Madrid</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function normalizeString(str) {
+            return str
+                .normalize("NFD")
+                .replace(/[^\w\s]/g, "")
+                .toLowerCase();
+        }
+
+        function filterTable() {
+            var searchValue = normalizeString(document.getElementById('searchTitle').value);
+            $('#tabla-centros tbody tr').each(function() {
+                var title = normalizeString($(this).find('td').first().text());
+                if (title.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('#searchTitle').on('input', filterTable);
+        });
+    </script>
+</head>
+<body>
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="{{ url_for('cultura.cultura_principal') }}" class="btn">Volver a Cultura y Educación</a>
+    </div>
+
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="{{ url_for('cultura.mapa_centros_educativos') }}" class="btn">Ver Mapa</a>
+    </div>
+
+    <h1>Centros Educativos de Madrid</h1>
+
+    <div style="text-align: center;">
+        <form action="{{ url_for('cultura.centros_educativos') }}" method="get">
+            <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <a href="{{ url_for('cultura.centros_educativos') }}" class="btn">Reiniciar Filtros</a>
+            </div>
+        </form>
+        <div style="margin-bottom: 10px;">
+            <input type="text" id="searchTitle" placeholder="Filtrar centros educativos por título..." />
+        </div>
+    </div>
+
+    {% if mensaje_no_resultados %}
+        <div class="no-results">
+            <p>{{ mensaje_no_resultados }}</p>
+        </div>
+    {% endif %}
+
+    <table id="tabla-centros">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Horario</th>
+                <th>Servicios</th>
+                <th>Dirección</th>
+                <th>Enlace</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for centro in centros_educativos %}
+                <tr>
+                    <td>{{ centro.title }}</td>
+                    <td>{{ centro.organization_desc if centro.organization_desc else 'No disponible' }}</td>
+                    <td>{{ centro.schedule if centro.schedule else 'No disponible' }}</td>
+                    <td>{{ centro.services if centro.services else 'No disponible' }}</td>
+                    <td>{{ centro.street_address if centro.street_address else 'No disponible' }}</td>
+                    <td><a href="{{ centro.relation }}" target="_blank">Ver más</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a class="btn" href="{{ url_for('cultura.centros_educativos', page=page - 1, search=request.args.get('search', '') ) }}">Anterior</a>
+        {% endif %}
+        
+        <span> Página {{ page }} de {{ (total_centros_educativos // per_page) + (1 if total_centros_educativos % per_page > 0 else 0) }} </span>
+        
+        {% if centros_educativos|length == 15 %}
+            <a class="btn" href="{{ url_for('cultura.centros_educativos', page=page + 1, search=request.args.get('search', '') ) }}">Siguiente</a>
+        {% endif %}
+    </div>
+</body>
+</html>

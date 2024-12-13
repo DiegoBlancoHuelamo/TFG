@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #34a51e, #36a0ec);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin: 40px 0;
+    color: #ffffff;
+    font-size: 3.2rem;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1.2px;
+}
+
+.btn {
+    background: linear-gradient(90deg, #1e88e5, #42a5f5);
+    color: white;
+    padding: 14px 24px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    margin-top: 30px;
+    margin-right: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #1565c0, #2196f3);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#searchTitle {
+    width: 90%;
+    max-width: 800px;
+    padding: 16px;
+    font-size: 18px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#searchTitle:focus {
+    border-color: #2196f3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.no-results {
+    text-align: center;
+    font-size: 18px;
+    color: #e53935;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+#map {
+    width: 80%;
+    height: 65vh;
+    margin-top: 5px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border: 2px solid #000000;
+}
+
+.leaflet-popup-content {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.leaflet-popup-content a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.leaflet-popup-content a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    #searchTitle {
+        width: 95%;
+    }
+
+    #map {
+        width: 95%;
+        height: 50vh;
+    }
+
+    .btn {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px 0;
+    background: #f1f1f1;
+    width: 100%;
+    color: #666;
+    font-size: 14px;
+}
